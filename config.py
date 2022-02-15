@@ -9,7 +9,7 @@ else:
     log_channel = None
 
 class Config(object):
-    APP_ID = int(os.environ.get("APP_ID", 1234567))
+    APP_ID = int(os.environ.get("APP_ID", 2370938))
     API_HASH = os.environ.get("API_HASH", "")
     BOT_TOKEN = os.environ.get("BOT_TOKEN", "")
     AUTH_USERS = set(int(x) for x in os.environ.get("AUTH_USERS", "").split())
