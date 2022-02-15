@@ -33,12 +33,12 @@ GITHUB_REPO=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "Source Code 🗂", url="https://github.com/Itz-fork/Mega.nz-Bot"
+                        "Source Code", url="https://t.me/BawihteiUpdates/26"
                     )
                 ],
                 [
                     InlineKeyboardButton(
-                        "Support Group 🆘", url="https://t.me/Nexa_bots"
+                        "Support", url="https://t.me/BawihteiSupports"
                     )
                 ]
             ]
@@ -49,7 +49,7 @@ CANCEL_BUTTN=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "Cancel ❌", callback_data="cancelvro"
+                        "Cancel", callback_data="cancelvro"
                     )
                 ]
             ]
@@ -83,7 +83,7 @@ async def megadl_megapy(_, message: Message):
     try:
         if Config.IS_PUBLIC_BOT == "False":
             if message.from_user.id not in Config.AUTH_USERS:
-                return await message.reply_text("**Sorry this bot isn't a Public Bot 🥺! But You can make your own bot ☺️, Click on Below Button!**", reply_markup=GITHUB_REPO)
+                return await message.reply_text("**Tih luih he Bot  Mi zawng zawng tan anilo 🥺! Nangma puala i siam ve duh chuan min zawt la ☺️, A hnuaia Button khu hmet rawh!**", reply_markup=GITHUB_REPO)
             elif Config.IS_PUBLIC_BOT == "True":
                 pass
     except Exception as e:
@@ -94,16 +94,16 @@ async def megadl_megapy(_, message: Message):
     megadl_path = basedir + "/" + userpath
     # Temp fix for the https://github.com/Itz-fork/Mega.nz-Bot/issues/11
     if os.path.isdir(megadl_path):
-        return await message.reply_text("`Already One Process is Going On. Please wait until it's finished!`")
+        return await message.reply_text("`Buaipui lai pakhat a awm mek. A zawh hma chu lo nghak rawh!`")
     else:
-        os.makedirs(megadl_path)
+        airs(megadl_path)
     try:
-        download_msg = await message.reply_text("**Starting to Download The Content! This may take while 😴**", reply_markup=CANCEL_BUTTN)
+        download_msg = await message.reply_text("**Download hna thawh ṭan ani e! Hun rei lo te chu a awh ang 😴**", reply_markup=CANCEL_BUTTN)
         await send_logs(user_id=userpath, mchat_id=the_chat_id, mega_url=url, download_logs=True)
         loop = get_running_loop()
         await loop.run_in_executor(None, partial(DownloadMegaLink, url, megadl_path, download_msg))
         folder_f = [val for sublist in [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(megadl_path)] for val in sublist]
-        await download_msg.edit("**Successfully Downloaded The Content!**")
+        await download_msg.edit("**Hlawhtling tak a download ani e!**")
     except Exception as e:
         if os.path.isdir(megadl_path):
             await download_msg.edit(f"**Error:** `{e}`")
@@ -120,7 +120,7 @@ async def megadl_megapy(_, message: Message):
             file_size = os.stat(megadl_path).st_size
             if file_size > Config.TG_MAX_SIZE:
                 base_splt_out_dir = megadl_path + "splitted_files"
-                await download_msg.edit("`Large File Detected, Trying to split it!`")
+                await download_msg.edit("`File a lian tlat, Ṭhen darh mek ani!`")
                 loop = get_running_loop()
                 await loop.run_in_executor(None, partial(split_files(input_file=mg_file, out_base_path=base_splt_out_dir)))
                 split_out_dir = [val for sublist in [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(megadl_path)] for val in sublist]
@@ -145,24 +145,24 @@ async def megadl_megatools(_, message: Message):
     try:
         if Config.IS_PUBLIC_BOT == "False":
             if message.from_user.id not in Config.AUTH_USERS:
-                return await message.reply_text("**Sorry this bot isn't a Public Bot 🥺! But You can make your own bot ☺️, Click on Below Button!**", reply_markup=GITHUB_REPO)
+                return await message.reply_text("**Tih luih he Bot hi mi zawng zawng tan anilo 🥺! Nangma pual in i siam ve duh anih chuan min text la ☺️, A hnuaia Button khu hmet rawh!**", reply_markup=GITHUB_REPO)
             elif Config.IS_PUBLIC_BOT == "True":
                 pass
     except Exception as e:
         return await send_errors(e)
     url = message.text.split(None, 1)[1]
     if not re.match(MEGA_REGEX, url):
-        return await message.reply("`This isn't a mega url!`")
+        return await message.reply("`Hei hi Mega link anilo!`")
     userpath = str(message.from_user.id)
     the_chat_id = str(message.chat.id)
     megadl_path = basedir + "/" + userpath
     # Temp fix for the https://github.com/Itz-fork/Mega.nz-Bot/issues/11
     if os.path.isdir(megadl_path):
-        return await message.reply_text("`Already One Process is Going On. Please wait until it's finished!`")
+        return await message.reply_text("`Buaipui lai pakhat a awm mek. A zawh hma chu lo nghak rawh!`")
     else:
         os.makedirs(megadl_path)
     try:
-        download_msg = await message.reply_text("**Starting to Download The Content! This may take while 😴** \n\n`Note: You can't cancel this!`")
+        download_msg = await message.reply_text("**Download hna ṭan ani 😴** \n\n`Note: Hei hi tih tâwp theih anilo!`")
         await send_logs(user_id=userpath, mchat_id=the_chat_id, mega_url=url, download_logs=True)
         megacmd = f"megadl --limit-speed 0 --path {megadl_path} {url}"
         loop = get_running_loop()
@@ -180,7 +180,7 @@ async def megadl_megatools(_, message: Message):
             file_size = os.stat(megadl_path).st_size
             if file_size > Config.TG_MAX_SIZE:
                 base_splt_out_dir = megadl_path + "splitted_files"
-                await download_msg.edit("`Large File Detected, Trying to split it!`")
+                await download_msg.edit("`File a lian lutuk, Ṭhen darh mek ani!`")
                 loop = get_running_loop()
                 await loop.run_in_executor(None, partial(split_files(input_file=mg_file, out_base_path=base_splt_out_dir)))
                 split_out_dir = [val for sublist in [[os.path.join(i[0], j) for j in i[2]] for i in os.walk(megadl_path)] for val in sublist]
@@ -188,7 +188,7 @@ async def megadl_megatools(_, message: Message):
                     await guess_and_send(spl_f, int(the_chat_id), "cache", download_msg)
             else:
                 await guess_and_send(mg_file, int(the_chat_id), "cache", download_msg)
-        await download_msg.edit("**Successfully Uploaded The Content!**")
+        await download_msg.edit("**Hlawhtling tak a upload ani!**")
     except Exception as e:
         await download_msg.edit(f"**Error:** \n`{e}`")
         await send_errors(e)
@@ -204,7 +204,7 @@ async def megadl_megatools(_, message: Message):
 async def nomegaurl(_, message: Message):
   # Auth users only
     if message.from_user.id not in Config.AUTH_USERS:
-        await message.reply_text("**Sorry this bot isn't a Public Bot 🥺! But You can make your own bot ☺️, Click on Below Button!**", reply_markup=GITHUB_REPO)
+        await message.reply_text("**Tih luih he Bot hi mi zawng zawng tan anilo 🥺! Nangma puala i siam ve duh chuan min text la ☺️, A hnuaia Button khu hmet rawh!**", reply_markup=GITHUB_REPO)
         return
     else:
-      await message.reply_text("Sorry, I can't find a **valid mega.nz url** in your message! Can you check it again? \n\nAlso Make sure your url **doesn't** contain `mega.co.nz`. \n\n**If there is,** \n - Open that url in a web-browser and wait till webpage loads. \n - Then simply copy url of the webpage that you're in \n - Try Again")
+      await message.reply_text("Tihpalh **mega.nz link dik tak** i message ah hian hmuh anilo! I ennawn leh thei a ngem? \n\nTin link hian **mega.co.nz** link a `keng tel em` tih chian rawh. \n\n**If there is,** \n - Open that url in a web-browser and wait till webpage loads. \n - Then simply copy url of the webpage that you're in \n - Try Again")
